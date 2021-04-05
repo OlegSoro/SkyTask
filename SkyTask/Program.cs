@@ -13,50 +13,64 @@ namespace SkyTask
 
     class Program
     {
-        static void Main(string[] args)
+
+        static void Query()
         {
-            int grade = 0;
-            int sum = 0;
-            float result = 0f;
-            int i = 1;
+            Console.WriteLine("Введите оценку студента. Числа должны быть строго от 2 до 5 включительно" + "\nДля вывода результата введите 0");
+        }
 
-            Console.WriteLine("Введите оценку студента. Числа должны быть строго от 2 до 5 включительно");
-            Console.WriteLine("Для вывода результата введите 0");
+        static float MiddleGrade(int x, int y, float z)
+        {           
+            z = (float)x / y;
+            Console.WriteLine("Средняя оценка студента " + "{0: 0.0}", z);
+            return z;
+        }
 
-            while (i > 0)
-            {
-                grade = int.Parse(Console.ReadLine());
-
-                if (grade >= 2 && grade <= 5)
-                {
-                    sum = sum + grade;                   
-                    i++;
-                }
-
-                else
-                {
-                    if (grade == 0)
-                    {
-                        break;
-                    }
-                Console.WriteLine("Ошибка. Вы ввели неверное число");
-                }
-            }
-
-            result = (float)sum / (i-1);
-            //Console.WriteLine("Средняя оценка студента " + result);
-            Console.WriteLine("Средняя оценка студента " + "{0: 0.0}",result);
-
-            if (result > 3.5)
+        static void Result(float x)
+        {
+            if (x > 3.5)
             {
                 Console.WriteLine("Поздравляем!!! Вы сдали");
-            } 
+            }
             else
             {
                 Console.WriteLine("К сожалению, вы провалились");
             }
+        }
 
-            
+        static void Main(string[] args)
+        {
+            int sum = 0;
+            float result = 0f;
+            int i = 1;
+
+            Query();
+
+            char[] delimiterChars = { ' ', ',', '.', ':', '\t' };
+            string[] str = Console.ReadLine().Split(delimiterChars);
+
+            try
+            {
+                int[] arr = str.Select(j => int.Parse(j)).ToArray();
+
+                for (int j = 0; j < arr.Length; j++)
+                {
+                    if (arr[j] >= 2 && arr[j] <= 5)
+                        continue;
+                    else
+                        Console.WriteLine("Ошибка!!! Вы ввели недопустимые числа");
+                }
+                sum = arr.Sum();
+                i = arr.Length;
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Ошибка!!! Вы ввели недопустимый символ");
+            }
+
+            result = MiddleGrade(sum, i, result);
+
+            Result(result);
         }
     }
 }
