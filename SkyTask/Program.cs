@@ -16,7 +16,7 @@ namespace SkyTask
 
         static void Query()
         {
-            Console.WriteLine("Введите оценку студента. Числа должны быть строго от 2 до 5 включительно" + "\nДля вывода результата введите 0");
+            Console.WriteLine("Введите оценку студента. Числа должны быть строго от 2 до 5 включительно");
         }
 
         static float MiddleGrade(int x, int y, float z)
