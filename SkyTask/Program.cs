@@ -69,13 +69,11 @@ namespace SkyTask
                             {
                                 return;
                                 //Или Environment.Exit(0);
-                                break;
                             }
                             else
                                 Console.WriteLine("Неверно! Повторите попытку");
                         }
                     }
-                    break;
                 }
                 sum = arr.Sum();
                 i = arr.Length;
@@ -90,7 +88,6 @@ namespace SkyTask
                     {
                         return;
                         //Или Environment.Exit(0);
-                        break;
                     }
                     else
                         Console.WriteLine("Неверно! Повторите попытку");
