@@ -28,7 +28,7 @@ namespace SkyTask
 
         static void Result(float x)
         {
-            if (x > 3.5)
+            if (x >= 3.5)
             {
                 Console.WriteLine("Поздравляем!!! Вы сдали");
             }
@@ -56,18 +56,46 @@ namespace SkyTask
                 for (int j = 0; j < arr.Length; j++)
                 {
                     if (arr[j] >= 2 && arr[j] <= 5)
+                    {
                         continue;
+                    }
                     else
-                        Console.WriteLine("Ошибка!!! Вы ввели недопустимые числа");
+                    {
+                        Console.WriteLine("Ошибка!!! Вы ввели недопустимые числа" + "\nНажмите Escape для выхода");
+                        while (true)
+                        {
+                            var key = Console.ReadKey();
+                            if (key.Key == ConsoleKey.Escape)
+                            {
+                                return;
+                                //Или Environment.Exit(0);
+                                break;
+                            }
+                            else
+                                Console.WriteLine("Неверно! Повторите попытку");
+                        }
+                    }
+                    break;
                 }
                 sum = arr.Sum();
                 i = arr.Length;
             }
             catch (FormatException)
             {
-                Console.WriteLine("Ошибка!!! Вы ввели недопустимый символ");
+                Console.WriteLine("Ошибка!!! Вы ввели недопустимый символ" + "\nНажмите Escape для выхода");
+                while (true)
+                {
+                    var key = Console.ReadKey();
+                    if (key.Key == ConsoleKey.Escape)
+                    {
+                        return;
+                        //Или Environment.Exit(0);
+                        break;
+                    }
+                    else
+                        Console.WriteLine("Неверно! Повторите попытку");
+                }
             }
-
             result = MiddleGrade(sum, i, result);
 
             Result(result);
